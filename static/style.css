@@ -1,0 +1,36 @@
+.showContent{
+    float: left;
+    margin: calc(1vh);
+    border: 1px solid black;
+    padding: calc(1vh);
+}
+a{
+    text-decoration: none;
+    color: deepskyblue;
+}
+.inputDiv{
+    height: calc(30vh);
+    width: calc(40vw);
+    margin-left: calc(30vw);
+    text-align: center;
+    display: block;
+}
+textarea{
+    border: 1px solid black;
+    border-radius: 15px;
+}
+.submitButton{
+    height: 20%;
+    width: 20%;
+    position: relative;
+}
+iframe{
+    height: calc(50vh);
+    width: calc(80vw);
+    margin-left: calc(10vw);
+    text-align: center;
+    display: block;
+    border: 1px solid black;
+    border-radius: 15px;
+    overflow-y: auto;
+}

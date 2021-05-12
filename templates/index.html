@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<body title="Local Clipboard" style="margin: 0;">
+    <div class="inputDiv">
+        <h1>剪切板</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <textarea rows="10" cols="50" name="text" placeholder=" 请输入内容"></textarea><br>
+            <input type="file" multiple="" style="border: 1px solid black;" name="file[]">
+            <input type="submit" value="上传" class="submitButton">
+        </form>
+    </div>
+    <iframe src="{{url_for('contents')}}"></iframe>
+</body>
+{% endblock %}
