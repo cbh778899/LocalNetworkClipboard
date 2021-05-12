@@ -12,7 +12,13 @@ class db():
         conn = sqlite3.connect("clipboard.db")
         conn.cursor().execute("create table if not exists clipboard(id, content, type)")
         ids = conn.cursor().execute("select id from clipboard")
+        idFrom0 = 0
         for i in ids:
+            if idFrom0 != i[0]:
+                for j in range(i[0] - idFrom0):
+                    id_calculator.append(-1)
+                    idFrom0 += 1
+            idFrom0 += 1
             id_calculator.append(i[0])
         conn.commit()
         conn.close()
