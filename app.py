@@ -57,19 +57,20 @@ class db():
     
     def rm(self, id):
         conn = sqlite3.connect("clipboard.db")
-        try:
-            if id == None:
-                conn.cursor().execute('delete from clipboard')
-            else:
-                col = self.getContentById(id)
+        if id == None:
+            conn.cursor().execute('delete from clipboard')
+        else:
+            col = self.getContentById(id)
+            try:
                 if col[2] == "file":
                     os.remove(col[1])
-                conn.cursor().execute('delete from clipboard where id=%d'%(id))
-                global id_calculator
-                id_calculator[id_calculator.index(id)] = -1
-        finally:
-            conn.commit()
-            conn.close()
+            except FileNotFoundError:
+                pass
+            conn.cursor().execute('delete from clipboard where id=%d'%(id))
+            global id_calculator
+            id_calculator[id_calculator.index(id)] = -1
+        conn.commit()
+        conn.close()
 
 db().create()
 
