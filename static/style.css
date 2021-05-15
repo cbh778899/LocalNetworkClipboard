@@ -14,6 +14,7 @@ a{
     margin-left: calc(30vw);
     text-align: center;
     display: block;
+    z-index: 2;
 }
 textarea{
     border: 1px solid black;

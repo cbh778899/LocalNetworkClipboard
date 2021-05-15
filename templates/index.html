@@ -6,10 +6,11 @@
         <h1>剪切板</h1>
         <form method="POST" enctype="multipart/form-data">
             <textarea rows="10" cols="50" name="text" placeholder=" 请输入内容"></textarea><br>
+            <input type="checkbox" name="if_save_as_file">保存为文件<input type="text" placeholder=" 文件名" name="save_as_file"><br><br>
             <input type="file" multiple="" style="border: 1px solid black;" name="file[]">
             <input type="submit" value="上传" class="submitButton">
         </form>
     </div>
-    <iframe src="{{url_for('contents')}}"></iframe>
+    <iframe src="{{url_for('contents')}}" style="z-index: 1;"></iframe>
 </body>
 {% endblock %}

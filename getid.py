@@ -1,4 +1,5 @@
 import socket
+import os
 
 def get_host_ip():
     try:
@@ -11,6 +12,7 @@ def get_host_ip():
     return ip
 
 if __name__ == '__main__':
-    print(get_host_ip(),":5000",sep="")
+    print(get_host_ip(),":5000","\n",sep="")
+    os.system("Pause")
 
 # 参考https://blog.csdn.net/u013314786/article/details/78962103

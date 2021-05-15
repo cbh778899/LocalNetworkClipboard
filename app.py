@@ -80,7 +80,17 @@ def root():
     if request.method == 'POST':
         text_content = request.form['text']
         file_content = request.files.getlist('file[]')
-        if text_content != "":
+        if_save_as_file = request.form.get("if_save_as_file")
+        if if_save_as_file:
+            save_as_file = request.form['save_as_file']
+            if save_as_file != "" and text_content != "":
+                f = open(save_as_file, "w")
+                f.write(text_content.replace("\r\n","\n"))
+                f.close()
+                db().write(save_as_file,"file")
+        if text_content != "" and not if_save_as_file:
+            db().write(text_content.replace("\r\n","<br>"), "text")
+        elif text_content != "" and if_save_as_file and save_as_file == "":
             db().write(text_content.replace("\r\n","<br>"), "text")
         if file_content:
             for f in file_content:
