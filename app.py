@@ -40,19 +40,13 @@ class db():
 
     def read(self):
         conn = sqlite3.connect("clipboard.db")
-        result = conn.cursor().execute('select * from clipboard')
-        li = []
-        for r in result:
-            li.append(r)
+        result = conn.cursor().execute('select * from clipboard').fetchall()
         conn.close()
-        return li
+        return result
 
     def getContentById(self, id):
         conn = sqlite3.connect("clipboard.db")
-        result = conn.cursor().execute('select * from clipboard where id=%d'%(id))
-        for r in result:
-            result = r
-            break
+        result = conn.cursor().execute('select * from clipboard where id=%d'%(id)).fetchone()
         return result
     
     def rm(self, id):
@@ -117,6 +111,10 @@ def contents():
 def remove(id):
     db().rm(int(id))
     return redirect(url_for('contents'))
+
+@app.route("/download/id/<int:id>")
+def download_id(id):
+    return redirect("/download/{}".format(db().getContentById(id)[1]))
 
 @app.route("/download/<filename>", methods=['GET'])
 def download(filename):
